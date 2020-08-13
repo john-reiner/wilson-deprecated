@@ -2,7 +2,7 @@
   "name": "my-goal-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://john-reiner.github.io/wilson-development",
+  "homepage": "http://john-reiner.github.io/wilson-development/home",
   "dependencies": {
     "-": "0.0.1",
     "@testing-library/jest-dom": "^4.2.4",
