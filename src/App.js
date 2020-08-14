@@ -23,6 +23,7 @@ function App(props) {
   const [confirmedCompletedGoal, setConfirmedCompletedGoal] = useState({})
   const [newTaskId, setNewTaskId] = useState('')
   const [newResourceId, setNewResourceId] = useState('')
+  const [loggingIn, setloggingIn] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -33,9 +34,11 @@ function App(props) {
   const handlePasswordChange = e => setPassword(e.target.value)
 
   const loginUser = () => {
+
     fetch("https://wilson-backend.herokuapp.com/api/v1/users")
     .then(response => response.json())
     .then(users => {
+      
       let user = users.find(user => user.username === username)
       if (user && user.password ===  password) {
           setLoggedinUser(user)
@@ -43,8 +46,10 @@ function App(props) {
           props.history.push('/today')
       } else {
           alert('Wrong Username or Password')
+          setloggingIn(false)
       }
     })
+    setloggingIn(true)
   }
 
   useEffect(() => {
@@ -156,7 +161,7 @@ function App(props) {
       <NavBar loggedinUser={loggedinUser}/> 
       <MainBody newTaskId={newTaskId} getNewResourceId={getNewResourceId} newResourceId={newResourceId} getNewTaskId={getNewTaskId} confirmedCompletedGoal={confirmedCompletedGoal} resourceModalClose={resourceModalClose} resourceModalOpen={resourceModalOpen} resourceModalShow={resourceModalShow} taskModalShow={taskModalShow} taskModalClose={taskModalClose} taskModalOpen={taskModalOpen} clickedGoalid={clickedGoalid} completeGoal={completeGoal} completedGoal={completedGoal} deleteModalClose={deleteModalClose} deleteModalShow={deleteModalShow} loggedinUser={loggedinUser} handleGoalClick={handleGoalClick} completeTaskids={completeTaskids} completeTask={completeTask}/>
       <Route exact path="/signup" render={() => <SignUp />} />
-      <Route exact path="/wilson" render={(routerProps) => <SignIn handleSubmit={handleSubmit} username={username} password={password} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} loggedinUser={loggedinUser} username={username} password={password} {...routerProps}/>} />
+      <Route exact path="/wilson" render={(routerProps) => <SignIn loggingIn={loggingIn} handleSubmit={handleSubmit} username={username} password={password} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} loggedinUser={loggedinUser} username={username} password={password} {...routerProps}/>} />
       <Route exact path="/goal_showpage" render={() => <GoalShowPage newTaskId={newTaskId} newResourceId={newResourceId}  resourceModalOpen={resourceModalOpen} taskModalOpen={taskModalOpen} clickedGoalid={clickedGoalid} completeTaskids={completeTaskids} completeTask={completeTask} />} />
       <Route exact path="/add_goal" render={() => <NewGoal loggedinUser={loggedinUser}/>} />
     </div>

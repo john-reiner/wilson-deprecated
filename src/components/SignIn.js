@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Button, Container, Row, Col, Image} from 'react-bootstrap'
+import {Form, Button, Container, Row, Col, Image, Spinner} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
@@ -33,16 +33,7 @@ export default function SignIn(props) {
                         <Form.Text className="text-muted">
                             Not registered? <Link to='/signup' href="#">Create an account</Link>
                         </Form.Text>
-                        <Button variant="primary" disabled>
-                            <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                            />
-                            <span className="sr-only">Loading...</span>
-                        </Button>
+                        {props.loggingIn ?   <Button variant="primary" disabled><Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" /> Loading...</Button> : <Button variant="primary" type="submit">Submit</Button>}
                     </Form>
                 </Col>
             </Row>
