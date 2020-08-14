@@ -33,7 +33,16 @@ export default function SignIn(props) {
                         <Form.Text className="text-muted">
                             Not registered? <Link to='/signup' href="#">Create an account</Link>
                         </Form.Text>
-                        <Button variant="secondary" type="submit">Submit</Button>
+                        <Button variant="primary" disabled>
+                            <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                            />
+                            <span className="sr-only">Loading...</span>
+                        </Button>
                     </Form>
                 </Col>
             </Row>
@@ -41,36 +50,3 @@ export default function SignIn(props) {
     )
     
 }
-
-
-{/* <Jumbotron style={{backgroundColor: '#333', color: 'white', display: 'inline-block', width: '100%'}}>
-<img
-    alt=""
-    src="wilson.png"
-    width="200"
-    height="200"
-    className="d-inline-block align-top"
-    style={{verticalAlign: 'middle', textAlign: 'center', float: 'left', marginRight: '70px'}}
-/>
-
-<p>
-</p>
-</Jumbotron>
-</Col>
-</Row>
-<Row>
-<Col md={{ span: 6, offset: 3}} style={{backgroundColor: '#333', color: 'white', padding: '15px', borderRadius: '5px', }}>
-<Form onSubmit={props.handleSubmit} >
-<Form.Group controlId="username">
-<Form.Label>Username:</Form.Label>
-<Form.Control type="username" placeholder="Enter username" name={'username'} value={props.username} onChange={props.handleUsernameChange} />
-</Form.Group>
-<Form.Group controlId="formBasicPassword">
-<Form.Label>Password</Form.Label>
-<Form.Control type="password" placeholder="Password" name={'password'} value={props.password} onChange={props.handlePasswordChange} />
-</Form.Group>
-<Form.Text className="text-muted">
-Not registered? <Link to='/signup' href="#">Create an account</Link>
-</Form.Text>
-<Button variant="secondary" type="submit">Submit</Button>
-</Form> */}
